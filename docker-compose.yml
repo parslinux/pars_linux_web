@@ -1,0 +1,67 @@
+version: "3.8"
+
+services:
+  # ----------------------------------------------------------------------------
+  # 1. FRONTEND SERVICE (ParsLinux Static Web SPA)
+  # ----------------------------------------------------------------------------
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: parslinux-web-frontend
+    restart: unless-stopped
+    ports:
+      - "8088:8080"
+    environment:
+      - NODE_ENV=production
+    # Zero-Trust Container Hardening (En Az Yetki & Salt Okunur)
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m
+      - /var/cache/nginx:rw,noexec,nosuid,size=64m
+      - /var/run:rw,noexec,nosuid,size=16m
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 4s
+      retries: 3
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - parslinux-internal
+
+  # ----------------------------------------------------------------------------
+  # 2. BACKEND SERVICE (Python FastAPI Microservice)
+  # ----------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: parslinux-api-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APT_REPO_BASE=https://parslinux.github.io/apt_repo
+      - PRIVACY_SALT=parslinux-production-salt
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - parslinux-internal
+
+networks:
+  parslinux-internal:
+    driver: bridge
+
