@@ -1,11 +1,14 @@
 # 🌐 ParsLinux Web Platformu (Official Web & Microservices)
 
 [![ParsLinux Version](https://img.shields.io/badge/ParsLinux-1.0%20(Anatolian)-0ea5e9?style=for-the-badge&logo=linux&logoColor=white)](https://github.com/parslinux)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-parslinux.github.io-10b981?style=for-the-badge&logo=github&logoColor=white)](https://parslinux.github.io/pars_linux_web/)
 [![Security Model](https://img.shields.io/badge/Security-Zero--Trust%20(S%C4%B1f%C4%B1r%20G%C3%BCven)-10b981?style=for-the-badge&logo=shield&logoColor=white)](#-s%C4%B1f%C4%B1r-g%C3%BCven-zero-trust-g%C3%BCvenlik-modeli)
 [![Architecture](https://img.shields.io/badge/Architecture-Microservices-6366f1?style=for-the-badge&logo=docker&logoColor=white)](#-%C3%A7ok-katmanl%C4%B1-mikroservis-mimarisi)
 [![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-orange?style=for-the-badge)](LICENSE)
 
 **ParsLinux Web Platformu**, Türkiye'nin ve dünyanın dört bir yanındaki kullanıcılar için geliştirilen **ParsLinux 1.0 (Anatolian)** işletim sisteminin modern, yüksek performanslı, **Mikroservis** tabanlı ve **Sıfır Güven (Zero-Trust)** güvenlik felsefesiyle inşa edilmiş resmi web vitrinidir.
+
+👉 **Canlı Web Sitesi (GitHub Pages):** [https://parslinux.github.io/pars_linux_web/](https://parslinux.github.io/pars_linux_web/)
 
 ---
 
