@@ -7,14 +7,20 @@ import os
 
 APT_REPO_BASE = os.getenv("APT_REPO_BASE", "https://parslinux.github.io/apt_repo")
 PACKAGES_URL = f"{APT_REPO_BASE}/dists/0.1/main/binary-amd64/Packages"
-
 MIRRORS = [
+    {
+        "id": "sourceforge-mirror",
+        "name": "SourceForge Official ISO Mirror",
+        "region": "Global / Multi-CDN",
+        "url": "https://sourceforge.net/projects/parslinux-gnome/files/",
+        "iso_url": "https://sourceforge.net/projects/parslinux-gnome/files/latest/download"
+    },
     {
         "id": "github-pages",
         "name": "ParsLinux Primary CDN (GitHub Pages)",
         "region": "Global / Anycast",
         "url": "https://parslinux.github.io/apt_repo/",
-        "iso_url": "https://github.com/parslinux"
+        "iso_url": "https://github.com/parslinux/pars_linux_web/releases"
     },
     {
         "id": "source-repo",

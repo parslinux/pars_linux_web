@@ -46,17 +46,29 @@ export function renderModalContent(currentLang, selectedEdition = 'gnome') {
     ? 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
     : '9f83c12a76f2a8934b11f7c7849c25624896eb3841e24a87c02b281b369f8841';
 
+  const sfUrl = isGnome 
+    ? 'https://sourceforge.net/projects/parslinux-gnome/files/'
+    : 'https://sourceforge.net/projects/parslinux-gnome/files/';
+  const sfDirect = isGnome
+    ? 'https://sourceforge.net/projects/parslinux-gnome/files/latest/download'
+    : 'https://sourceforge.net/projects/parslinux-gnome/files/';
+
   body.innerHTML = `
     <div class="modal-dl-grid">
-      <a href="https://github.com/parslinux" target="_blank" rel="noopener" class="modal-dl-btn dl-trigger-btn" data-file="${file}">
+      <a href="${sfDirect}" target="_blank" rel="noopener" class="modal-dl-btn dl-trigger-btn" data-file="${file}">
         <i data-lucide="download"></i>
-        <span>${isTr ? 'Doğrudan İndir (HTTPS)' : 'Direct HTTPS Download'}</span>
-        <span class="modal-dl-sub">${size} • ISO</span>
+        <span>${isTr ? 'SourceForge CDN ile İndir' : 'Download via SourceForge CDN'}</span>
+        <span class="modal-dl-sub">${size} • ISO (En Hızlı Yansı)</span>
       </a>
-      <a href="https://github.com/parslinux" target="_blank" rel="noopener" class="modal-dl-btn secondary dl-trigger-btn" data-file="${file}.torrent">
-        <i data-lucide="share-2"></i>
-        <span>${isTr ? 'Torrent ile İndir' : 'Torrent P2P Download'}</span>
-        <span class="modal-dl-sub">${size} • .torrent</span>
+      <a href="${sfUrl}" target="_blank" rel="noopener" class="modal-dl-btn secondary dl-trigger-btn" data-file="${file}">
+        <i data-lucide="server"></i>
+        <span>${isTr ? 'SourceForge Dosya Yansısı' : 'SourceForge Mirror Files'}</span>
+        <span class="modal-dl-sub">sourceforge.net/projects/parslinux-gnome</span>
+      </a>
+      <a href="https://github.com/parslinux/pars_linux_web/releases" target="_blank" rel="noopener" class="modal-dl-btn secondary dl-trigger-btn" data-file="${file}">
+        <i data-lucide="github"></i>
+        <span>${isTr ? 'GitHub Releases Yansısı' : 'GitHub Releases Mirror'}</span>
+        <span class="modal-dl-sub">GitHub CDN</span>
       </a>
     </div>
 
